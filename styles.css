@@ -1,0 +1,177 @@
+:root {
+    --square-size: min(8vh, 8vw);
+    --light-color: #f0d9b5;
+    --dark-color: #b58863;
+    --highlight-color: rgba(0, 255, 0, 0.3);
+    --selected-color: rgba(255, 255, 0, 0.3);
+  }
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #2c2c2c;
+    color: white;
+    margin: 0;
+    min-height: 100vh;
+  }
+  
+  .game-container {
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  #board {
+    display: grid;
+    grid-template-columns: repeat(8, var(--square-size));
+    grid-template-rows: repeat(8, var(--square-size));
+    border: 2px solid #444;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    background: white;
+    position: relative;
+  }
+  
+  .square {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .square.light { background-color: var(--light-color); }
+  .square.dark { background-color: var(--dark-color); }
+  .square.highlight { background-color: var(--highlight-color); }
+  .square.selected { background-color: var(--selected-color); }
+  
+  .piece {
+    width: 80%;
+    height: 80%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: grab;
+    transition: transform 0.2s;
+    pointer-events: none;
+    font-size: 2rem;
+  }
+  
+  .piece.dragging {
+    cursor: grabbing;
+    transform: scale(1.2);
+  }
+
+  .voice-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  #voice-control-btn {
+    background: #444;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  #voice-control-btn:hover {
+    background: #555;
+  }
+
+  #voice-control-btn.listening {
+    background: #d32f2f;
+    animation: pulse 1.5s infinite;
+  }
+
+  #voice-status {
+    font-size: 1rem;
+    color: #ddd;
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
+  }
+  
+  .white-piece {
+    color: #FFFFFF;
+    text-shadow: 0 0 2px #000;
+  }
+  
+  .black-piece {
+    color: #000000;
+    text-shadow: 0 0 2px #FFF;
+  }
+  
+  .square-label {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 10px;
+    color: rgba(0, 0, 0, 0.7);
+    pointer-events: none;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  #moveHistory {
+    width: 250px;
+    height: 400px;
+    overflow-y: auto;
+    background: #333;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  
+  .timers {
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0;
+  }
+  
+  .promotion-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #444;
+    padding: 1rem;
+    border-radius: 5px;
+    z-index: 1000;
+    display: none;
+    gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .promotion-option {
+    width: var(--square-size);
+    height: var(--square-size);
+    cursor: pointer;
+    background-size: contain;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5));
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #gameStatus {
+    margin: 1rem;
+    font-size: 1.2rem;
+    min-height: 2rem;
+  }
