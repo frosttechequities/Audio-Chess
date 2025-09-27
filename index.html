@@ -1,26 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Complete Chess Game</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aural Chess</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Chess Game</h1>
-  <button id="toggle-ai-btn">Toggle AI Opponent</button>
-  <div class="timers">
-    <div>White: <span id="whiteTime">00:00</span></div>
-    <div>Black: <span id="blackTime">00:00</span></div>
-  </div>
-  <div class="game-container">
-    <div id="board"></div>
-    <div id="moveHistory"></div>
-  </div>
-  <div class="controls">
-    <button id="newGame">New Game</button>
-    <button id="undoMove">Undo</button>
-  </div>
-  <div class="promotion-modal">
-    <div class="promotion-options"></极
-[Response interrupted by a tool use result. Only one tool may be used at a time and should be placed at the end of the message.]
+    <h1>Aural Chess</h1>
+
+    <div class="voice-control">
+        <button id="voice-control-btn" aria-label="Activate Voice Control">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24px" height="24px"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11h-1c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92z"/></svg>
+        </button>
+        <p id="voice-status">Click the mic and speak your move (e.g., "e4")</p>
+    </div>
+
+    <div class="game-container">
+        <div id="board"></div>
+        <div class="sidebar">
+            <div class="timers">
+                <div>White: <span id="whiteTime">10:00</span></div>
+                <div>Black: <span id="blackTime">10:00</span></div>
+            </div>
+            <div id="moveHistory"></div>
+            <div id="gameStatus">White's turn</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button id="newGame">New Game</button>
+        <button id="undoMove">Undo</button>
+        <button id="toggle-ai-btn">Play vs AI</button>
+        <button id="square-trainer-btn">Square Trainer</button>
+        <button id="move-executor-btn">Move Executor</button>
+        <button id="vision-trainer-btn">Vision Trainer (Blindfold)</button>
+        <button id="peek-btn" style="display: none;">Peek</button>
+    </div>
+
+    <div class="settings">
+        <div class="setting">
+            <label for="ai-difficulty-slider">AI Difficulty:</label>
+            <input type="range" id="ai-difficulty-slider" min="1" max="4" value="2">
+            <span id="ai-difficulty-label">2</span>
+        </div>
+        <div class="setting">
+            <label for="tutor-commentary-checkbox">Tutor Commentary:</label>
+            <input type="checkbox" id="tutor-commentary-checkbox">
+        </div>
+    </div>
+
+    <div class="promotion-modal" style="display: none;">
+        <div class="promotion-options">
+            <!-- Promotion options will be added here by JS -->
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
