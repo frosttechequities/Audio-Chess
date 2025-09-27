@@ -47,6 +47,20 @@
   .square.dark { background-color: var(--dark-color); }
   .square.highlight { background-color: var(--highlight-color); }
   .square.selected { background-color: var(--selected-color); }
+  .square.last-move { background-color: rgba(255, 165, 0, 0.5); } /* Orange for last move */
+  .square.correct { background-color: rgba(0, 255, 0, 0.7) !important; }
+  .square.incorrect { background-color: rgba(255, 0, 0, 0.7) !important; }
+
+  /* Vision Trainer styles */
+  .vision-mode-active .piece {
+    opacity: 0;
+    pointer-events: none; /* Can't click what you can't see */
+  }
+
+  .vision-mode-active.peeking .piece {
+    opacity: 1;
+    transition: opacity 0.2s;
+  }
   
   .piece {
     width: 80%;
@@ -175,3 +189,21 @@
     font-size: 1.2rem;
     min-height: 2rem;
   }
+
+.settings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #333;
+  border-radius: 5px;
+  align-items: center;
+}
+
+.setting {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
